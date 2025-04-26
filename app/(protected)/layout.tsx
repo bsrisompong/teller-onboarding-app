@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
-import AuthenticatedLayout from '../../layouts/AuthenticatedLayout';
+import ProtectedLayout from '@/layouts/ProtectedLayout';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  return <AuthenticatedLayout>{children}</AuthenticatedLayout>;
+  return <ProtectedLayout>{children}</ProtectedLayout>;
 };
 
 export default Layout;
