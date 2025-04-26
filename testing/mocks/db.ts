@@ -22,6 +22,12 @@ const models = {
     expiresAt: String,
     createdAt: () => new Date().toISOString(),
   },
+  log: {
+    id: primaryKey(uuidv4),
+    userId: String,
+    action: String,
+    timestamp: () => new Date().toISOString(),
+  },
 };
 
 export const db = factory(models);
