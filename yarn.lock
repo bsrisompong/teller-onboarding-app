@@ -4398,6 +4398,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-oauth/google@npm:^0.12.1":
+  version: 0.12.1
+  resolution: "@react-oauth/google@npm:0.12.1"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/fe23e3c0a4d0b9999fcd7b932b1a42bf94fdab526473931d780d08742455b8861fc647857b3b491e258ecef4a407dbf7321440c0d00890e23059d487795f92fb
+  languageName: node
+  linkType: hard
+
 "@sinclair/typebox@npm:^0.27.8":
   version: 0.27.8
   resolution: "@sinclair/typebox@npm:0.27.8"
@@ -11872,6 +11882,7 @@ __metadata:
     "@mantine/notifications": "npm:^7.17.5"
     "@mswjs/data": "npm:^0.16.2"
     "@next/bundle-analyzer": "npm:^15.2.3"
+    "@react-oauth/google": "npm:^0.12.1"
     "@storybook/nextjs": "npm:^8.6.8"
     "@storybook/react": "npm:^8.6.8"
     "@tabler/icons-react": "npm:^3.31.0"

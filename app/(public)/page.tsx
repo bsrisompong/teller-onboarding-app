@@ -1,6 +1,6 @@
-import { Badge, Button, Card, Group, Stack, Text } from '@mantine/core';
-import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
-import { Welcome } from '../components/Welcome/Welcome';
+import { Badge, Button, Group, Stack } from '@mantine/core';
+import { ColorSchemeToggle } from '../../components/ColorSchemeToggle/ColorSchemeToggle';
+import { Welcome } from '../../components/Welcome/Welcome';
 
 export default function HomePage() {
   return (

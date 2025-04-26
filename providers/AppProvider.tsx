@@ -1,11 +1,14 @@
 'use client';
 
 import React from 'react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { MantineProvider } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
+// config
+import { getGoogleClientSecret } from '@/config/constants';
 // lib
 import { queryClient } from '@/libs/react-query';
 // theme
@@ -17,15 +20,17 @@ type AppProviderProps = {
 
 const AppProvider = ({ children }: AppProviderProps) => {
   return (
-    <MantineProvider theme={theme} cssVariablesResolver={cssVariableResolver}>
-      <ModalsProvider>
-        <QueryClientProvider client={queryClient}>
-          <Notifications />
-          {children}
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-      </ModalsProvider>
-    </MantineProvider>
+    <GoogleOAuthProvider clientId={getGoogleClientSecret()}>
+      <MantineProvider theme={theme} cssVariablesResolver={cssVariableResolver}>
+        <ModalsProvider>
+          <QueryClientProvider client={queryClient}>
+            <Notifications />
+            {children}
+            <ReactQueryDevtools initialIsOpen={false} />
+          </QueryClientProvider>
+        </ModalsProvider>
+      </MantineProvider>
+    </GoogleOAuthProvider>
   );
 };
 
