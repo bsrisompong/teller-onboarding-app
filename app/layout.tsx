@@ -1,12 +1,17 @@
+// styles
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/dropzone/styles.css';
 import '../theme/style.css';
 
+//
 import React from 'react';
 import { GeistSans } from 'geist/font/sans';
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
+import { API_MOCKING } from '@/config/constants';
+import { MSWWrapper } from '@/libs/msw';
+//
 import AppProvider from '@/providers/AppProvider';
 
 export const metadata = {
@@ -26,7 +31,7 @@ export default async function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
-        <AppProvider>{children}</AppProvider>
+        <AppProvider>{API_MOCKING ? <MSWWrapper>{children}</MSWWrapper> : children}</AppProvider>
       </body>
     </html>
   );
