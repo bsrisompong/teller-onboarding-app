@@ -6,7 +6,7 @@ export async function POST() {
     const session = await getSession();
 
     if (session) {
-      await deleteSession(session.id);
+      await deleteSession(session.userId);
     }
 
     return NextResponse.json({ success: true });

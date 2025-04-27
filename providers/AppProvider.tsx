@@ -20,7 +20,7 @@ const AppProvider = ({ children }: AppProviderProps) => {
     <MantineProvider theme={theme} cssVariablesResolver={cssVariableResolver}>
       <ModalsProvider>
         <QueryClientProvider client={queryClient}>
-          <Notifications />
+          <Notifications position="top-center" />
           {children}
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>

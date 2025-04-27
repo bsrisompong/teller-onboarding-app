@@ -1,8 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import { notifications } from '@mantine/notifications';
+// libs
 import apiClient from '@/libs/api-client';
 // types
-import { GoogleAuthResponse, GoogleCallbackRequest, GoogleCallbackResponse } from '../types/api';
+import { GoogleAuthResponse, GoogleCallbackRequest, GoogleCallbackResponse } from '../types';
 
 export const googleAuthApi = {
   /**
@@ -40,8 +41,21 @@ export const useGoogleAuthMutation = () => {
     },
   });
 
+  const { mutate: callbackAuth, isPending: isCallbackLoading } = useMutation({
+    mutationFn: googleAuthApi.callback,
+    onSuccess: () => {
+      notifications.show({
+        title: 'Authentication Success',
+        message: 'Google authentication successful',
+        color: 'green',
+      });
+    },
+  });
+
   return {
     initiateAuth,
+    callbackAuth,
     isAuthLoading,
+    isCallbackLoading,
   };
 };

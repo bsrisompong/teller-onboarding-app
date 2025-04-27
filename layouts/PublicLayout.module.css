@@ -1,0 +1,19 @@
+.container {
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Prevent content from being hidden behind mobile browser UI */
+  min-height: -webkit-fill-available;
+  position: relative;
+}
+
+.center {
+  width: 100%;
+  /* Ensure content doesn't overflow on small screens */
+  max-width: 100%;
+  padding: 1rem;
+  position: relative;
+  z-index: 1;
+}

@@ -1,20 +1,19 @@
 import React, { ReactNode } from 'react';
-import { redirect } from 'next/navigation';
-import { Container } from '@mantine/core';
+import { Center, Container } from '@mantine/core';
+import BackgroundParticles from '@/components/BackgroundParticles';
+import styles from './PublicLayout.module.css';
 
 interface PublicLayoutProps {
   children: ReactNode;
 }
 
 const PublicLayout = async ({ children }: PublicLayoutProps) => {
-  // TODO: Implement actual authentication check
-  const isAuthenticated = false; // This should be replaced with actual auth check
-
-  if (isAuthenticated) {
-    redirect('/customer-info');
-  }
-
-  return <Container size="xl">{children}</Container>;
+  return (
+    <Container size="xl" className={styles.container}>
+      <BackgroundParticles />
+      <Center className={styles.center}>{children}</Center>
+    </Container>
+  );
 };
 
 export default PublicLayout;

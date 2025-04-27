@@ -6,7 +6,7 @@ export interface LoaderProps extends MantineLoaderProps {
   fullScreen?: boolean;
 }
 
-export function Loader({ label, fullScreen, ...props }: LoaderProps) {
+export default function Loader({ label, fullScreen, ...props }: LoaderProps) {
   const containerClass = fullScreen ? styles.fullScreen : styles.container;
 
   return (

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { OAuth2Client } from 'google-auth-library';
-import { createSession } from '@/features/auth';
+import { createSession, SessionType } from '@/features/auth';
 import { JWTPayload } from '@/libs/jwt';
 import { prisma } from '@/libs/prisma';
 
@@ -69,13 +69,13 @@ export async function GET(request: Request) {
       });
     }
 
-    // Create JWT token and session
+    // Create JWT token and session based on user's 2FA status
     const jwtPayload: JWTPayload = {
       userId: user.id,
       email: user.email,
       name: user.name || undefined,
       picture: user.picture || undefined,
-      type: 'pending-2FA',
+      type: user.totpEnabled ? SessionType.VERIFY_2FA : SessionType.SETUP_2FA,
     };
 
     await createSession(jwtPayload);

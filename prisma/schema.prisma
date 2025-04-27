@@ -34,7 +34,7 @@ model Session {
   id        String   @id @default(cuid())
   userId    String
   token     String
-  type      String   // 'pending-2FA' | 'active'
+  type      String   // Account access type: 'setup-2FA' for initial 2FA setup, 'verify-2FA' for 2FA verification, 'full-access' for fully verified accounts
   createdAt DateTime @default(now())
   expiresAt DateTime
   user      User     @relation(fields: [userId], references: [id])

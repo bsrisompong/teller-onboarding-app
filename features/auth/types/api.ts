@@ -30,3 +30,11 @@ export interface GoogleCallbackResponse {
     updatedAt: string;
   };
 }
+
+export type TotpGenerateResponse = {
+  uri: string;
+};
+
+export type TotpVerifyResponse = {
+  success: boolean;
+};

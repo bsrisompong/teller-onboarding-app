@@ -1,20 +1,21 @@
 import { jwtVerify, SignJWT } from 'jose';
+import { SessionType, TOKEN_EXPIRES_IN } from '@/features/auth/types';
 
 export interface JWTPayload {
   userId: string;
   email: string;
   name?: string;
   picture?: string;
-  type: 'pending-2FA' | 'authenticated';
+  type: SessionType;
+  exp?: number; // JWT expiration timestamp
 }
 
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!);
-const JWT_EXPIRES_IN = '1h';
+export const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!);
 
 export const signToken = async (payload: JWTPayload): Promise<string> => {
   return await new SignJWT({ ...payload })
     .setProtectedHeader({ alg: 'HS256' })
-    .setExpirationTime(JWT_EXPIRES_IN)
+    .setExpirationTime(TOKEN_EXPIRES_IN[payload.type])
     .sign(JWT_SECRET);
 };
 
