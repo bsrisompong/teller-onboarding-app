@@ -3,15 +3,11 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { IconChevronDown, IconLogout } from '@tabler/icons-react';
-import clsx from 'clsx';
-import { AppShell, Avatar, Box, Group, Menu, Text, UnstyledButton } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { AppShell, Avatar, Group, Menu, Text } from '@mantine/core';
 import { useDeleteSession, useGetSession } from '@/features/auth';
 import classes from './Header.module.css';
 
-interface HeaderProps {}
-
-function Header(props: HeaderProps) {
+function Header() {
   const { data: session } = useGetSession();
   const { mutateAsync: logout } = useDeleteSession();
   const router = useRouter();
