@@ -5,6 +5,7 @@
 
 .user-info {
   display: block;
+
   @media (max-width: $mantine-breakpoint-xs) {
     display: none;
   }

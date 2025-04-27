@@ -3,6 +3,8 @@ export * from './hooks/useCustomerInfoForm';
 // components
 export * from './components/CustomerInfoForm';
 export * from './components/OnboardingStepper';
+export * from './components/UploadDocumentForm';
+export * from './components/VerifyForm';
 
 // stores
 export * from './stores/onboardingStore';

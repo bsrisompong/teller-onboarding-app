@@ -11,6 +11,8 @@ const sampleCustomerInfo = {
 const sampleFile = {
   id: 'file1',
   name: 'passport.pdf',
+  type: 'application/pdf',
+  base64: 'base64',
 };
 
 describe('onboardingStore', () => {

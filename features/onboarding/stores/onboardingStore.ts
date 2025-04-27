@@ -18,8 +18,8 @@ export type CustomerInfo = {
 export type UploadedFile = {
   id: string;
   name: string;
-  url?: string;
-  file?: File;
+  type: string;
+  base64: string; // TODO: Remove this later when we have a better way to handle the file
 };
 
 interface OnboardingStore {
@@ -28,7 +28,7 @@ interface OnboardingStore {
   customerInfo: CustomerInfo;
   uploadedFiles: UploadedFile[];
   currentStep: number;
-  setCustomerInfo: (info: Partial<CustomerInfo>) => void;
+  setCustomerInfo: (info: Partial<CustomerInfo> | CustomerInfo) => void;
   addUploadedFile: (file: UploadedFile) => void;
   removeUploadedFile: (id: string) => void;
   reset: () => void;
@@ -71,7 +71,12 @@ export const useOnboardingStore = create<OnboardingStore>()(
       uploadedFiles: [],
       currentStep: 0,
       setCustomerInfo: (info) =>
-        set((state) => ({ customerInfo: { ...state.customerInfo, ...info } })),
+        set((state) => ({
+          customerInfo:
+            'name' in info && 'surname' in info && 'citizenId' in info && 'accountNumber' in info
+              ? (info as CustomerInfo)
+              : { ...state.customerInfo, ...info },
+        })),
       addUploadedFile: (file) =>
         set((state) => ({ uploadedFiles: [...state.uploadedFiles, file] })),
       removeUploadedFile: (id) =>
@@ -98,6 +103,12 @@ export const useOnboardingStore = create<OnboardingStore>()(
     }),
     {
       name: 'onboarding-store',
+      partialize: (state) => ({
+        customerId: state.customerId,
+        applicationId: state.applicationId,
+        customerInfo: state.customerInfo,
+        uploadedFiles: state.uploadedFiles,
+      }),
     }
   )
 );

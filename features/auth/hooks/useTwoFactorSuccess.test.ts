@@ -27,13 +27,13 @@ describe('useTwoFactorSuccess', () => {
   it('should initialize with default delay', () => {
     renderHook(() => useTwoFactorSuccess());
 
-    expect(useTimeout).toHaveBeenCalledWith(expect.any(Function), 5000);
+    expect(useTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
   });
 
   it('should use custom delay when provided', () => {
-    renderHook(() => useTwoFactorSuccess({ redirectDelay: 3000 }));
+    renderHook(() => useTwoFactorSuccess({ redirectDelay: 5000 }));
 
-    expect(useTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
+    expect(useTimeout).toHaveBeenCalledWith(expect.any(Function), 5000);
   });
 
   it('should call onSuccess and router.replace when timeout callback is executed', () => {

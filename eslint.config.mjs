@@ -25,5 +25,18 @@ export default tseslint.config(
     rules: {
       'no-console': 'off',
     },
+  },
+  {
+    files: ['app/api/**/route.{ts,tsx}'],
+    rules: {
+      // allow console.* in those files
+      'no-console': 'off',
+
+      // ignore an unused parameter named `error` or starting with _
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+    },
   }
 );

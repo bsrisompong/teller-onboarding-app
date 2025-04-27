@@ -4,7 +4,6 @@ import React, { ReactNode } from 'react';
 import { AppShell, Container } from '@mantine/core';
 import { Header } from '@/components/Header';
 import { useAuthGuard } from '@/features/auth';
-import { OnboardingStepper } from '@/features/onboarding';
 
 interface ProtectedLayoutProps {
   children: ReactNode;
@@ -25,10 +24,7 @@ const ProtectedLayout: React.FC<ProtectedLayoutProps> = ({ children }) => {
     >
       <Header />
       <AppShell.Main>
-        <Container>
-          <OnboardingStepper />
-          {children}
-        </Container>
+        <Container>{children}</Container>
       </AppShell.Main>
     </AppShell>
   );

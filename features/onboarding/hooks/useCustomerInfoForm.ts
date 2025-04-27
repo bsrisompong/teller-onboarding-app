@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -21,7 +20,6 @@ type customerInfo = z.infer<typeof customerInfoSchema>;
 export function useCustomerInfoForm(onSuccess?: () => void) {
   const { customerInfo, setNewApplication } = useOnboardingStore();
   const { mutateAsync: createApplication, isPending } = useApplicationMutation();
-  const router = useRouter();
 
   const {
     register,
@@ -53,7 +51,6 @@ export function useCustomerInfoForm(onSuccess?: () => void) {
         color: 'green',
       });
       reset();
-      router.push('/onboarding/upload-document');
       if (onSuccess) onSuccess();
     } catch (error) {
       console.error(error);
