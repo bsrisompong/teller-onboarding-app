@@ -1,6 +1,8 @@
 'use client';
 
 import React, { ReactNode } from 'react';
+import { AppShell } from '@mantine/core';
+import { Header } from '@/components/Header';
 import { useAuthGuard } from '@/features/auth';
 
 interface ProtectedLayoutProps {
@@ -13,7 +15,16 @@ const ProtectedLayout: React.FC<ProtectedLayoutProps> = ({ children }) => {
   if (isLoading) return <div>Loading...</div>;
   if (!session) return null; // Or a session expired message
 
-  return <div className="Protected-layout">{children}</div>;
+  return (
+    <AppShell
+      header={{ height: 60 }}
+      navbar={{ width: 0, breakpoint: 'sm', collapsed: { mobile: true } }}
+      className="protected-layout"
+    >
+      <Header />
+      {children}
+    </AppShell>
+  );
 };
 
 export default ProtectedLayout;

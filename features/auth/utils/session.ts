@@ -43,8 +43,11 @@ export async function getSession(
 
 export async function deleteSession(cookieName: string = COOKIE_NAMES.SESSION) {
   const cookieStore = await cookies();
+
   // Set cookie with empty value and immediate expiration
+  console.log(` session.ts:53 - cookieName:`, cookieName);
   cookieStore.set(cookieName, '', {
+    httpOnly: true,
     expires: new Date(0),
     path: '/',
   });

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Center, Loader, Paper } from '@mantine/core';
-import { TwoFactorSuccess, useSession, useTwoFactorSuccess } from '@/features/auth';
+import { TwoFactorSuccess, useGetSession, useTwoFactorSuccess } from '@/features/auth';
 import TwoFAForm from '@/features/auth/components/TwoFAForm/TwoFAForm';
 import { SessionType } from '@/features/auth/types';
 
@@ -10,7 +10,7 @@ const TwoFactorAuthPage = () => {
   const [verifySuccess, setVerifySuccess] = useState<boolean>(false);
   const { startRedirect } = useTwoFactorSuccess();
 
-  const { data: session, isLoading: isSessionLoading } = useSession();
+  const { data: session, isLoading: isSessionLoading } = useGetSession();
   const isSetup = session?.type === SessionType.SETUP_2FA;
 
   const handleSuccess = () => {

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import ProtectedLayout from '@/layouts/ProtectedLayout';
+import { ProtectedLayout } from '@/layouts/ProtectedLayout';
 
 interface LayoutProps {
   children: ReactNode;

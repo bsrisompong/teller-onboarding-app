@@ -1,12 +1,12 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import { useAuthGuard } from './useAuthGuard';
-import { useSession, useDeleteSession } from '@/features/auth';
 import { useRouter } from 'next/navigation';
+import { render } from '@testing-library/react';
 import { notifications } from '@mantine/notifications';
+import { useDeleteSession, useGetSession } from '@/features/auth';
+import { useAuthGuard } from './useAuthGuard';
 
 jest.mock('@/features/auth', () => ({
-  useSession: jest.fn(),
+  useGetSession: jest.fn(),
   useDeleteSession: jest.fn(),
 }));
 jest.mock('next/navigation', () => ({
@@ -31,8 +31,13 @@ describe('useAuthGuard', () => {
     (useDeleteSession as jest.Mock).mockReturnValue({ mutate: deleteSession });
   });
 
-  it('returns session and isLoading from useSession', () => {
-    (useSession as jest.Mock).mockReturnValue({ data: { user: 'test' }, isLoading: false, isError: false, error: null });
+  it('returns session and isLoading from useGetSession', () => {
+    (useGetSession as jest.Mock).mockReturnValue({
+      data: { user: 'test' },
+      isLoading: false,
+      isError: false,
+      error: null,
+    });
     let session, isLoading;
     function Capture() {
       const result = useAuthGuard();
@@ -46,7 +51,12 @@ describe('useAuthGuard', () => {
   });
 
   it('shows notification, redirects, and deletes session on 401 error', () => {
-    (useSession as jest.Mock).mockReturnValue({ data: null, isLoading: false, isError: true, error: new Error('401') });
+    (useGetSession as jest.Mock).mockReturnValue({
+      data: null,
+      isLoading: false,
+      isError: true,
+      error: new Error('401'),
+    });
     render(<TestComponent />);
     expect(notifications.show).toHaveBeenCalledWith({
       title: 'Session expired',
@@ -58,7 +68,12 @@ describe('useAuthGuard', () => {
   });
 
   it('does not trigger side effects when isLoading is true', () => {
-    (useSession as jest.Mock).mockReturnValue({ data: null, isLoading: true, isError: false, error: null });
+    (useGetSession as jest.Mock).mockReturnValue({
+      data: null,
+      isLoading: true,
+      isError: false,
+      error: null,
+    });
     render(<TestComponent />);
     expect(notifications.show).not.toHaveBeenCalled();
     expect(push).not.toHaveBeenCalled();
@@ -66,7 +81,12 @@ describe('useAuthGuard', () => {
   });
 
   it('does not trigger side effects when error is not 401', () => {
-    (useSession as jest.Mock).mockReturnValue({ data: null, isLoading: false, isError: true, error: new Error('500') });
+    (useGetSession as jest.Mock).mockReturnValue({
+      data: null,
+      isLoading: false,
+      isError: true,
+      error: new Error('500'),
+    });
     render(<TestComponent />);
     expect(notifications.show).not.toHaveBeenCalled();
     expect(push).not.toHaveBeenCalled();

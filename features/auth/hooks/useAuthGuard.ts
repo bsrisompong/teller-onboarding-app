@@ -3,14 +3,14 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { notifications } from '@mantine/notifications';
-import { useDeleteSession, useSession } from '@/features/auth';
+import { useDeleteSession, useGetSession } from '@/features/auth';
 
 interface UseAuthGuardOptions {}
 
 export const useAuthGuard = (props: UseAuthGuardOptions = {}) => {
   const router = useRouter();
 
-  const { data: session, isLoading, isError, error } = useSession();
+  const { data: session, isLoading, isError, error } = useGetSession();
   const { mutate: deleteSession } = useDeleteSession();
 
   useEffect(() => {
