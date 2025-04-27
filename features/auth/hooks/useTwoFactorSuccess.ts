@@ -10,7 +10,7 @@ interface UseTwoFactorSuccessOptions {
 
 export const useTwoFactorSuccess = ({
   onSuccess,
-  redirectDelay = 5 * 1000, // 5 seconds default
+  redirectDelay = 3 * 1000, // 3 seconds default
 }: UseTwoFactorSuccessOptions = {}) => {
   const router = useRouter();
 

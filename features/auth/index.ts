@@ -3,11 +3,12 @@ export * from './types';
 
 // hooks
 export * from './hooks/useTwoFactorSuccess';
+export * from './hooks/useAuthGuard';
 
 // apis
 export * from './apis/google-oauth';
 export * from './apis/totp';
-export * from './apis/useSession';
+export * from './apis/session';
 
 // utils
 export * from './utils/session';

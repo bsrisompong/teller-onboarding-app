@@ -16,6 +16,8 @@ export default tseslint.config(
           argsIgnorePattern: '^_',
         },
       ],
+      // eslint-disable-next-line curly
+      curly: 'off',
     },
   },
   {
