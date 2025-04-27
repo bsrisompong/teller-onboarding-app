@@ -22,8 +22,8 @@ function Header() {
 
   return (
     <AppShell.Header>
-      <Group h="100%" px="md" justify="space-between" className={classes.content}>
-        <Image src="/logo.svg" alt="logo" width={60} height={60} />
+      <Group h="100%" px="lg" justify="space-between" className={classes.content}>
+        <Image src="/logo.svg" alt="logo" width={50} height={50} />
         <Group>
           <Menu width={200}>
             <Menu.Target>

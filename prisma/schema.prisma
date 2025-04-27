@@ -57,3 +57,28 @@ model OAuthSession {
   @@index([expiresAt])
   @@index([userId])
 }
+
+model Customer {
+  id String @id @default(cuid())
+  name String
+  surname String
+  citizenId String
+  accountNumber String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  applications Application[]
+
+  @@index([citizenId])
+  @@index([accountNumber])  
+} 
+
+model Application {
+  id String @id @default(cuid())
+  customerId String @unique
+  customer Customer @relation(fields: [customerId], references: [id]) 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([customerId])
+  @@index([createdAt])
+}

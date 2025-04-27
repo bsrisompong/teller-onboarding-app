@@ -1,9 +1,10 @@
 'use client';
 
 import React, { ReactNode } from 'react';
-import { AppShell } from '@mantine/core';
+import { AppShell, Container } from '@mantine/core';
 import { Header } from '@/components/Header';
 import { useAuthGuard } from '@/features/auth';
+import { OnboardingStepper } from '@/features/onboarding';
 
 interface ProtectedLayoutProps {
   children: ReactNode;
@@ -20,9 +21,15 @@ const ProtectedLayout: React.FC<ProtectedLayoutProps> = ({ children }) => {
       header={{ height: 60 }}
       navbar={{ width: 0, breakpoint: 'sm', collapsed: { mobile: true } }}
       className="protected-layout"
+      padding="md"
     >
       <Header />
-      {children}
+      <AppShell.Main>
+        <Container>
+          <OnboardingStepper />
+          {children}
+        </Container>
+      </AppShell.Main>
     </AppShell>
   );
 };

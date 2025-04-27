@@ -1,3 +1,5 @@
+import { CustomerInfoForm } from '@/features/onboarding';
+
 export default function HomePage() {
-  return <div>Home</div>;
+  return <CustomerInfoForm />;
 }
