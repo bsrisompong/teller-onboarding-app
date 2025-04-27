@@ -25,3 +25,9 @@ class ResizeObserver {
 }
 
 window.ResizeObserver = ResizeObserver;
+
+const { TextEncoder } = require('./test-utils/mocks/text-encoder');
+
+global.TextEncoder = TextEncoder;
+
+// Add any other global mocks or setup here

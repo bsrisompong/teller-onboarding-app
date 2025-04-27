@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Button, Center, Modal, Text } from '@mantine/core';
+import { Button, Center, Modal } from '@mantine/core';
 import { useTimeout } from '@mantine/hooks';
 
 interface AlertModalProps {
@@ -23,7 +23,7 @@ const AlertModal: React.FC<AlertModalProps> = ({
   onTimeout,
   continueLabel = 'Continue',
 }) => {
-  const [countdown, setCountdown] = useState(timer ?? 0);
+  const [, setCountdown] = useState(timer ?? 0);
 
   const { start, clear } = useTimeout(
     () => {

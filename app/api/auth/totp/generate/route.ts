@@ -4,7 +4,7 @@ import { COOKIE_NAMES, COOKIE_OPTIONS, generateTOTPSecret, getSession } from '@/
 import { JWT_SECRET } from '@/libs/jwt';
 import { prisma } from '@/libs/prisma';
 
-export async function POST(request: Request) {
+export async function POST() {
   try {
     // Get and verify the session
     const session = await getSession();
