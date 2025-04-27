@@ -88,6 +88,7 @@ export function UploadDocumentForm({ onSuccess }: { onSuccess?: () => void }) {
             rejectColor="none"
             accept={['application/pdf', 'image/*']}
             maxSize={MAX_SIZE}
+            data-testid="dropzone-input"
           >
             <Text ta="center">
               ลากและวางไฟล์ที่นี่ หรือ
