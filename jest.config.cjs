@@ -12,6 +12,7 @@ const customJestConfig = {
     '^@/features/(.*)$': '<rootDir>/features/$1',
     '^@/test-utils/(.*)$': '<rootDir>/test-utils/$1',
     '^jose$': '<rootDir>/test-utils/mocks/jose.ts',
+    '^@/(.*)$': '<rootDir>/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
   transformIgnorePatterns: ['/node_modules/(?!(jose)/)'],
