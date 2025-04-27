@@ -20,6 +20,7 @@ export function CustomerInfoForm({ onSuccess }: CustomerInfoFormProps) {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack gap="md">
           <TextInput
+            data-testid="customer-name"
             label="ชื่อ"
             placeholder="กรอกชื่อ"
             {...register('name')}
@@ -27,6 +28,7 @@ export function CustomerInfoForm({ onSuccess }: CustomerInfoFormProps) {
             required
           />
           <TextInput
+            data-testid="customer-surname"
             label="นามสกุล"
             placeholder="กรอกนามสกุล"
             {...register('surname')}
@@ -34,6 +36,7 @@ export function CustomerInfoForm({ onSuccess }: CustomerInfoFormProps) {
             required
           />
           <TextInput
+            data-testid="customer-citizenId"
             label="หมายเลขบัตรประชาชน"
             placeholder="กรอกหมายเลขบัตรประชาชน 13 หลัก"
             maxLength={13}
@@ -42,6 +45,7 @@ export function CustomerInfoForm({ onSuccess }: CustomerInfoFormProps) {
             required
           />
           <TextInput
+            data-testid="customer-accountNumber"
             label="หมายเลขบัญชี"
             placeholder="กรอกหมายเลขบัญชี 10-12 หลัก"
             maxLength={12}
