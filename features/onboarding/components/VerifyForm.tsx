@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { IconFile } from '@tabler/icons-react';
 import { useMutation } from '@tanstack/react-query';
 import {
@@ -29,7 +30,7 @@ const mockConfirmPermission = new Promise((resolve, reject) => {
 export function VerifyForm() {
   const { customerInfo, uploadedFiles, applicationId, reset } = useOnboardingStore();
   const file = uploadedFiles[0];
-
+  const router = useRouter();
   const { mutateAsync: confirmPermission, isPending } = useMutation({
     mutationFn: () => mockConfirmPermission,
   });
@@ -53,7 +54,8 @@ export function VerifyForm() {
         message: 'ข้อมูลถูกยืนยันและอนุมัติ',
         color: 'green',
       });
-      reset();
+      // reset();
+      router.push('/customer');
     } catch (error) {
       notifications.show({
         title: 'ยืนยันข้อมูลและอนุมัติ',
